@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonline AI | Where Insight Meets Innovation</title>
+    <meta name="description" content="Sonline AI transforms your databases into a conversational intelligence layer. Ask questions, get SQL, charts, and business insights in seconds.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#0A0A0F',
+                        surface: '#12121A',
+                        surfaceLight: '#1A1A26',
+                        primary: '#FFFFFF',
+                        muted: '#8B8B9E',
+                        accentOrange: '#E65A00',
+                        accentBlue: '#4DA6FF',
+                        accentGreen: '#4CAF50',
+                        accentPurple: '#7C3AED',
+                        glassWhite: 'rgba(255,255,255,0.05)',
+                        glassBorder: 'rgba(255,255,255,0.08)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'glow-orange': '0 0 60px rgba(230, 90, 0, 0.15)',
+                        'glow-blue': '0 0 60px rgba(77, 166, 255, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer components {
+            .glass-card {
+                @apply bg-glassWhite backdrop-blur-xl border border-glassBorder rounded-2xl;
+            }
+            .btn-primary {
+                @apply bg-gradient-to-r from-accentOrange to-orange-500 text-white px-7 py-3.5 rounded-xl font-semibold transition-all hover:scale-105 hover:shadow-glow-orange active:scale-95;
+            }
+            .btn-secondary {
+                @apply bg-white/5 text-white border border-white/10 px-7 py-3.5 rounded-xl font-semibold transition-all hover:bg-white/10 active:scale-95;
+            }
+            .nav-link {
+                @apply text-muted hover:text-white transition-colors font-medium text-sm;
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .animate-pulse-slow {
+            animation: pulseSlow 3s ease-in-out infinite;
+        }
+        @keyframes pulseSlow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        .typing-dot {
+            animation: typingDot 1.4s ease-in-out infinite;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typingDot {
+            0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+            30% { opacity: 1; transform: translateY(-4px); }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #E65A00, #4DA6FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-glow {
+            position: relative;
+        }
+        .stat-glow::after {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            background: radial-gradient(circle, rgba(230, 90, 0, 0.06), transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { -webkit-font-smoothing: antialiased; }
+    </style>
+</head>
+<body class="bg-background text-primary selection:bg-accentOrange/30 overflow-x-hidden">
+
+    <!-- ======================== NAVBAR ======================== -->
+    <nav class="fixed top-0 w-full z-50 px-4 py-4">
+        <div class="max-w-7xl mx-auto glass-card px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="img/sonline_logo.png" alt="Sonline AI" class="h-9">
+            </div>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#support" class="nav-link">Support</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button class="btn-primary text-sm">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======================== HERO ======================== -->
+    <section class="pt-36 pb-20 px-6 relative overflow-hidden">
+        <!-- Background Glows -->
+        <div class="absolute top-20 right-10 w-[600px] h-[600px] bg-accentOrange/5 blur-[150px] -z-10 rounded-full"></div>
+        <div class="absolute top-40 left-0 w-[400px] h-[400px] bg-accentBlue/5 blur-[120px] -z-10 rounded-full"></div>
+        <div class="absolute bottom-0 left-1/2 w-[300px] h-[300px] bg-accentPurple/5 blur-[100px] -z-10 rounded-full"></div>
+
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: Copy -->
+                <div>
+                    <div class="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full mb-8">
+                        <span class="flex h-2 w-2 rounded-full bg-accentGreen animate-pulse-slow"></span>
+                        <span class="text-xs font-semibold text-muted uppercase tracking-wider">Next-Gen AI Intelligence</span>
+                    </div>
+
+                    <h1 class="font-heading text-5xl md:text-7xl tracking-tighter mb-6 leading-[0.95]">
+                        Ask your data.<br/>
+                        Get answers<br/>
+                        <span class="gradient-text">with Sonline AI</span>
+                    </h1>
+
+                    <p class="text-lg text-muted max-w-lg mb-10 leading-relaxed">
+                        Sonline AI transforms your databases into a conversational intelligence layer. Type a question — get SQL, charts, and business insights in seconds.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4 mb-16">
+                        <button class="btn-primary flex items-center gap-2 group">
+                            <span>Start for free</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+
+                    <!-- Stats Row -->
+                    <div class="flex gap-12">
+                        <div class="stat-glow text-center">
+                            <div class="text-3xl font-heading gradient-text">10x</div>
+                            <div class="text-xs text-muted mt-1 font-medium">Faster analysis</div>
+                        </div>
+                        <div class="stat-glow text-center">
+                            <div class="text-3xl font-heading gradient-text">99%</div>
+                            <div class="text-xs text-muted mt-1 font-medium">Query accuracy</div>
+                        </div>
+                        <div class="stat-glow text-center">
+                            <div class="text-3xl font-heading gradient-text">50+</div>
+                            <div class="text-xs text-muted mt-1 font-medium">Connectors</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Chat Mockup -->
+                <div class="animate-float">
+                    <div class="glass-card p-1.5 rounded-[2rem] shadow-glow-blue">
+                        <div class="bg-surface rounded-[1.75rem] overflow-hidden border border-glassBorder">
+                            <!-- Chat Header -->
+                            <div class="px-6 py-4 border-b border-glassBorder flex items-center gap-3">
+                                <div class="w-8 h-8 bg-gradient-to-br from-accentOrange to-orange-400 rounded-full flex items-center justify-center">
+                                    <i data-lucide="bot" class="w-4 h-4 text-white"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold">Sonline AI — Chat</div>
+                                </div>
+                            </div>
+
+                            <!-- Chat Messages -->
+                            <div class="p-5 space-y-4 min-h-[400px]">
+                                <!-- User message -->
+                                <div class="flex justify-end">
+                                    <div class="bg-gradient-to-r from-accentOrange to-orange-500 text-white px-4 py-3 rounded-2xl rounded-tr-sm max-w-[85%] text-sm">
+                                        Show me monthly revenue by region for Q1 2025
+                                    </div>
+                                </div>
+
+                                <!-- AI response -->
+                                <div class="flex justify-start">
+                                    <div class="bg-surfaceLight px-4 py-3 rounded-2xl rounded-tl-sm max-w-[90%] space-y-3">
+                                        <p class="text-sm text-muted">Sure! Here's the SQL query and a breakdown:</p>
+                                        <div class="bg-background rounded-xl p-3 font-mono text-xs text-accentBlue leading-relaxed">
+                                            <span class="text-accentOrange">SELECT</span> region, <span class="text-accentOrange">SUM</span>(revenue)<br/>
+                                            <span class="text-accentOrange">FROM</span> sales_data<br/>
+                                            <span class="text-accentOrange">WHERE</span> quarter = <span class="text-accentGreen">'Q1 2025'</span><br/>
+                                            <span class="text-accentOrange">GROUP BY</span> region;
+                                        </div>
+
+                                        <!-- Mini chart -->
+                                        <div class="flex items-end gap-3 pt-2">
+                                            <div class="flex-1 text-center">
+                                                <div class="bg-gradient-to-t from-accentBlue to-accentBlue/50 h-24 rounded-t-lg mb-1"></div>
+                                                <div class="text-xs text-muted">North</div>
+                                                <div class="text-xs font-semibold text-accentBlue">$820k</div>
+                                            </div>
+                                            <div class="flex-1 text-center">
+                                                <div class="bg-gradient-to-t from-accentOrange to-accentOrange/50 h-20 rounded-t-lg mb-1"></div>
+                                                <div class="text-xs text-muted">South</div>
+                                                <div class="text-xs font-semibold text-accentOrange">$650k</div>
+                                            </div>
+                                            <div class="flex-1 text-center">
+                                                <div class="bg-gradient-to-t from-accentPurple to-accentPurple/50 h-14 rounded-t-lg mb-1"></div>
+                                                <div class="text-xs text-muted">West</div>
+                                                <div class="text-xs font-semibold text-accentPurple">$480k</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Follow-up user message -->
+                                <div class="flex justify-end">
+                                    <div class="bg-gradient-to-r from-accentOrange to-orange-500 text-white px-4 py-3 rounded-2xl rounded-tr-sm max-w-[85%] text-sm">
+                                        Which region grew the most vs Q4?
+                                    </div>
+                                </div>
+
+                                <!-- Typing indicator -->
+                                <div class="flex justify-start">
+                                    <div class="bg-surfaceLight px-4 py-3 rounded-2xl rounded-tl-sm text-sm text-muted flex items-center gap-1">
+                                        Analyzing comparative growth...
+                                        <span class="typing-dot inline-block w-1.5 h-1.5 bg-accentOrange rounded-full ml-1"></span>
+                                        <span class="typing-dot inline-block w-1.5 h-1.5 bg-accentOrange rounded-full"></span>
+                                        <span class="typing-dot inline-block w-1.5 h-1.5 bg-accentOrange rounded-full"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Chat Input -->
+                            <div class="p-4 border-t border-glassBorder">
+                                <div class="bg-background border border-glassBorder rounded-xl px-4 py-3 flex items-center justify-between">
+                                    <span class="text-muted text-sm">Ask a follow-up question...</span>
+                                    <i data-lucide="send" class="text-accentOrange w-5 h-5"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== FEATURES ======================== -->
+    <section id="features" class="py-24 px-6 relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accentPurple/3 blur-[150px] -z-10 rounded-full"></div>
+
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-4">
+                <span class="text-xs font-bold text-accentOrange uppercase tracking-[0.2em]">Why Sonline AI</span>
+            </div>
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-4xl md:text-5xl tracking-tight mb-4">
+                    Unparalleled Intelligence<br/>
+                    <span class="text-muted">for your Enterprise</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Feature 1 -->
+                <div class="glass-card p-8 rounded-2xl transition-all hover:-translate-y-2 hover:border-accentOrange/30 group">
+                    <div class="w-14 h-14 bg-accentOrange/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-accentOrange/20 transition-colors">
+                        <span class="text-2xl">🗄️</span>
+                    </div>
+                    <h3 class="font-heading text-lg mb-3">Natural language to SQL</h3>
+                    <p class="text-muted text-sm leading-relaxed">Ask questions in plain English. Sonline AI generates accurate SQL with full schema awareness, instantly.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-card p-8 rounded-2xl transition-all hover:-translate-y-2 hover:border-accentBlue/30 group">
+                    <div class="w-14 h-14 bg-accentBlue/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-accentBlue/20 transition-colors">
+                        <span class="text-2xl">📊</span>
+                    </div>
+                    <h3 class="font-heading text-lg mb-3">Auto-generated charts</h3>
+                    <p class="text-muted text-sm leading-relaxed">Results visualized automatically — bar, line, pie — chosen intelligently based on your data shape.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-card p-8 rounded-2xl transition-all hover:-translate-y-2 hover:border-accentGreen/30 group">
+                    <div class="w-14 h-14 bg-accentGreen/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-accentGreen/20 transition-colors">
+                        <span class="text-2xl">⚡</span>
+                    </div>
+                    <h3 class="font-heading text-lg mb-3">Instant results</h3>
+                    <p class="text-muted text-sm leading-relaxed">Sub-second query generation with streaming responses. Insights appear as they are computed.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="glass-card p-8 rounded-2xl transition-all hover:-translate-y-2 hover:border-accentPurple/30 group">
+                    <div class="w-14 h-14 bg-accentPurple/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-accentPurple/20 transition-colors">
+                        <span class="text-2xl">🔗</span>
+                    </div>
+                    <h3 class="font-heading text-lg mb-3">50+ data connectors</h3>
+                    <p class="text-muted text-sm leading-relaxed">PostgreSQL, BigQuery, Snowflake, MySQL, DuckDB and more. Agents reason across your entire data estate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== PRICING ======================== -->
+    <section id="pricing" class="py-24 px-6 relative">
+        <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accentOrange/5 blur-[120px] -z-10 rounded-full"></div>
+
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-4">
+                <span class="text-xs font-bold text-accentOrange uppercase tracking-[0.2em]">Pricing Plans</span>
+            </div>
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-4xl md:text-5xl tracking-tight mb-4">
+                    Transparent pricing for<br/>
+                    <span class="text-muted">every stage of growth</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <!-- Starter -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col">
+                    <span class="text-sm font-bold text-muted uppercase tracking-widest mb-2">Starter</span>
+                    <div class="text-4xl font-heading mb-1">$0 <span class="text-base text-muted font-sans">/mo</span></div>
+                    <p class="text-sm text-muted mb-8">Perfect for exploring the AI reasoning engine.</p>
+                    <ul class="space-y-3 mb-10 flex-1 text-sm">
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>2 active data connectors</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>50 monthly AI queries</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>Standard SQL generation</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>Community support</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>Basic charts</span>
+                        </li>
+                    </ul>
+                    <button class="btn-secondary w-full">Choose Starter</button>
+                </div>
+
+                <!-- Business (Most Popular) -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col border-2 border-accentOrange/50 relative shadow-glow-orange">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-accentOrange to-orange-500 text-white text-xs font-bold px-4 py-1 rounded-full">Most Popular</div>
+                    <span class="text-sm font-bold text-accentOrange uppercase tracking-widest mb-2">Business</span>
+                    <div class="text-4xl font-heading mb-1">$199 <span class="text-base text-muted font-sans">/mo</span></div>
+                    <p class="text-sm text-muted mb-8">For growing teams that need real-time insights.</p>
+                    <ul class="space-y-3 mb-10 flex-1 text-sm">
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>Unlimited data connectors</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>Unlimited AI queries</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>Priority internal reasoning</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>Role-based access control</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>Custom brand themes</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>Email support</span>
+                        </li>
+                    </ul>
+                    <button class="btn-primary w-full">Choose Business</button>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col">
+                    <span class="text-sm font-bold text-muted uppercase tracking-widest mb-2">Enterprise</span>
+                    <div class="text-4xl font-heading mb-1">Custom</div>
+                    <p class="text-sm text-muted mb-8">Custom governance and dedicated infrastructure.</p>
+                    <ul class="space-y-3 mb-10 flex-1 text-sm">
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>On-premise deployment</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>SSO & Directory Sync</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>Dedicated account manager</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>SLA guarantee</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>Custom model fine-tuning</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0"></i>
+                            <span>24/7 dedicated support</span>
+                        </li>
+                    </ul>
+                    <button class="btn-secondary w-full">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== FOOTER ======================== -->
+    <footer id="support" class="py-16 px-6 border-t border-glassBorder">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="flex items-center gap-3">
+                <img src="img/sonline_logo.png" alt="Sonline AI" class="h-8">
+            </div>
+
+            <p class="text-sm text-muted">© 2026 Sonline AI. Build for the future.</p>
+
+            <div class="flex gap-8 text-sm text-muted">
+                <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                <a href="#" class="hover:text-white transition-colors">Terms</a>
+                <a href="#" class="hover:text-white transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

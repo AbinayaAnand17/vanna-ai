@@ -1,0 +1,17 @@
+def get_auth_db_connection():
+    return psycopg2.connect(
+        host="localhost",
+        user="postgres",
+        password="YOUR_PASSWORD",  # ← Update
+        dbname="YOUR_DB",           # ← Update
+        port="5432"
+    )
+
+# Run a Python file
+python filename.py
+
+# Run Streamlit app
+streamlit run vanna_dashboard.py
+
+# Install packages
+pip install package_name

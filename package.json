@@ -1,0 +1,27 @@
+{
+  "name": "vanna-main",
+  "version": "1.0.0",
+  "description": "Root package for Sonline AI project",
+  "scripts": {
+    "dev": "npm run dev --prefix frontends/sonline-ui",
+    "dev:ui": "npm run dev --prefix frontends/sonline-ui",
+    "dev:landing": "npm run dev --prefix frontends/vanna-landing",
+    "dev:component": "npm run dev --prefix frontends/webcomponent",
+    "build:ui": "npm run build --prefix frontends/sonline-ui",
+    "install:all": "npm install --prefix frontends/sonline-ui && npm install --prefix frontends/vanna-landing && npm install --prefix frontends/webcomponent"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "recharts": "^3.8.1"
+  },
+  "main": "vanna.js",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "type": "commonjs"
+}

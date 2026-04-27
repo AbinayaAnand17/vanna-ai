@@ -1,0 +1,22 @@
+# Sonline AI Dashboard - Requirements
+# Install with: pip install -r requirements_dashboard.txt
+
+streamlit>=1.28.0
+pandas>=2.0.0
+psycopg2-binary>=2.9.0
+sqlalchemy>=2.0.0
+
+# Sonline AI and LLM providers
+
+# For Google Gemini (Recommended):
+google-generativeai>=0.3.0
+sonline[google]>=0.3.0
+
+# Optional: For OpenAI:
+# pip install openai sonline[openai]
+
+# Optional: For other providers make sure to install:
+# - For Ollama (local): requests>=2.31.0
+# - For HuggingFace: transformers torch
+# - For Azure: azure-openai>=1.0.0
+

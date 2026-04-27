@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vanna AI Chat</title>
+    <!-- Drop into any existing webpage -->
+    <script src="https://img.vanna.ai/vanna-components.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: #121212; /* Dark background to match theme="dark" */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        /* Make the chat component take up a good amount of space */
+        vanna-chat {
+            width: 100%;
+            max-width: 800px;
+            height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+<vanna-chat
+  sse-endpoint="http://localhost:8000/chat" 
+  theme="dark">
+</vanna-chat>
+
+</body>
+</html>
+
